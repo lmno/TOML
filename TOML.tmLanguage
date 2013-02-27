@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fileTypes</key>
+	<array>
+		<string>toml</string>
+		<string>tml</string>
+	</array>
+	<key>name</key>
+	<string>TOML</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>comment</key>
+			<string>Comments - whole line or partial</string>
+			<key>match</key>
+			<string>#.*</string>
+			<key>name</key>
+			<string>comment.line.number-sign.toml</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>"</string>
+			<key>comment</key>
+			<string>Quoted text</string>
+			<key>end</key>
+			<string>"</string>
+			<key>name</key>
+			<string>string.name.value.toml</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Date </string>
+			<key>match</key>
+			<string>^(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]):(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])Z$</string>
+			<key>name</key>
+			<string>constant.numeric.toml</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Integers</string>
+			<key>match</key>
+			<string>-*[0-9]+</string>
+			<key>name</key>
+			<string>constant.numeric.toml</string>
+		</dict>
+	</array>
+	<key>scopeName</key>
+	<string>source.toml</string>
+	<key>uuid</key>
+	<string>9b00c027-8f13-4f5a-a57e-d90478a1f817</string>
+</dict>
+</plist>
