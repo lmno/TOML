@@ -12,10 +12,18 @@
 	<key>patterns</key>
 	<array>
 		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.comment.toml</string>
+				</dict>
+			</dict>
 			<key>comment</key>
 			<string>Comments - whole line or partial</string>
 			<key>match</key>
-			<string>#.*</string>
+			<string>(#.*)</string>
 			<key>name</key>
 			<string>comment.line.number-sign.toml</string>
 		</dict>
@@ -33,7 +41,7 @@
 			<key>comment</key>
 			<string>Date </string>
 			<key>match</key>
-			<string>^(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]):(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])Z$</string>
+			<string>(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]):(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])Z</string>
 			<key>name</key>
 			<string>constant.numeric.toml</string>
 		</dict>
@@ -44,6 +52,14 @@
 			<string>-*[0-9]+</string>
 			<key>name</key>
 			<string>constant.numeric.toml</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Boolean</string>
+			<key>match</key>
+			<string>(true|false)</string>
+			<key>name</key>
+			<string>constant.language.toml</string>
 		</dict>
 	</array>
 	<key>scopeName</key>
