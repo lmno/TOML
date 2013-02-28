@@ -31,7 +31,7 @@
 			<key>begin</key>
 			<string>"</string>
 			<key>comment</key>
-			<string>Quoted text</string>
+			<string>String</string>
 			<key>end</key>
 			<string>"</string>
 			<key>name</key>
@@ -39,7 +39,7 @@
 		</dict>
 		<dict>
 			<key>comment</key>
-			<string>Date </string>
+			<string>Datetime - ISO8601 dates</string>
 			<key>match</key>
 			<string>(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]):(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])Z</string>
 			<key>name</key>
@@ -47,7 +47,15 @@
 		</dict>
 		<dict>
 			<key>comment</key>
-			<string>Integers</string>
+			<string>Float</string>
+			<key>match</key>
+			<string>(-*[0-9]+)\.([0-9]+)</string>
+			<key>name</key>
+			<string>constant.numeric.toml</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Integer</string>
 			<key>match</key>
 			<string>-*[0-9]+</string>
 			<key>name</key>
@@ -67,11 +75,21 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.comment.toml</string>
+					<string>punctuation.definition.section.toml</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>entity.section.toml</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.section.toml</string>
 				</dict>
 			</dict>
 			<key>comment</key>
-			<string>Comments - whole line or partial</string>
+			<string>Key group</string>
 			<key>match</key>
 			<string>^\s*(\[)(.*?)(\])\s*</string>
 			<key>name</key>
