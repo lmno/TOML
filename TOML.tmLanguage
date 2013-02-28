@@ -23,7 +23,7 @@
 			<key>comment</key>
 			<string>Comments - whole line or partial</string>
 			<key>match</key>
-			<string>(#.*)</string>
+			<string>(#.*$)</string>
 			<key>name</key>
 			<string>comment.line.number-sign.toml</string>
 		</dict>
@@ -60,6 +60,22 @@
 			<string>(true|false)</string>
 			<key>name</key>
 			<string>constant.language.toml</string>
+		</dict>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.comment.toml</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Comments - whole line or partial</string>
+			<key>match</key>
+			<string>^\s*(\[)(.*?)(\])\s*</string>
+			<key>name</key>
+			<string>meta.tag.section.toml</string>
 		</dict>
 	</array>
 	<key>scopeName</key>
