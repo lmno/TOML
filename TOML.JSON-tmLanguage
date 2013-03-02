@@ -1,6 +1,7 @@
 { "name": "TOML",
   "scopeName": "source.toml",
   "fileTypes": ["toml","tml"],
+
   "patterns": [
     { "name": "comment.line.number-sign.toml",
       "match": "(#.*$)",
@@ -8,27 +9,6 @@
         "1" : { "name": "punctuation.definition.comment.toml"}
       },
       "comment": "Comments - whole line or partial"
-    },
-    { "name": "string.name.value.toml",
-      "begin": "\"",
-      "end": "\"",
-      "comment": "String"
-    },
-    { "name": "constant.numeric.toml",
-      "match": "(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]):(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])Z",
-      "comment": "Datetime - ISO8601 dates"
-    },
-    { "name": "constant.numeric.toml",
-      "match": "(-*[0-9]+)\\.([0-9]+)",
-      "comment": "Float"
-    },
-    { "name": "constant.numeric.toml",
-      "match": "-*[0-9]+",
-      "comment": "Integer"
-    },
-    { "name": "constant.language.toml",
-      "match": "(true|false)",
-      "comment": "Boolean"
     },
     { "name": "meta.tag.section.toml",
       "match": "^\\s*(\\[)(.*?)(\\])\\s*",
@@ -38,7 +18,50 @@
         "3" : { "name": "punctuation.definition.section.toml"}
       },
       "comment": "Key group"
-    }
+    },
+    { "include": "#dataTypes" }
   ],
+
+  "repository": {
+    "dataTypes": {
+      "patterns": [
+        { "name": "string.name.value.toml",
+          "begin": "\"",
+          "end": "\"",
+          "comment": "String"
+        },
+        { "name": "constant.other.date.toml",
+          "match": "(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]):(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])Z",
+          "comment": "Datetime - ISO8601 dates"
+        },
+        { "name": "constant.numeric.float.toml",
+          "match": "(-?[0-9]+)\\.([0-9]+)",
+          "comment": "Float"
+        },
+        { "name": "constant.numeric.integer.toml",
+          "match": "-?[0-9]+",
+          "comment": "Integer"
+        },
+        { "name": "constant.language,boolean.toml",
+          "match": "(true|false)",
+          "comment": "Boolean"
+        },
+        { "name": "meta.array.toml",
+          "begin": "\\[",
+          "beginCaptures": {
+              "0": { "name": "punctuation.definition.array.begin.toml" }
+          },
+          "patterns": [
+            { "include": "#dataTypes" }
+          ],
+          "end": "\\]",
+          "endCaptures": {
+              "0": { "name": "punctuation.definition.array.end.toml" }
+          },
+          "comment": "Array"
+        }
+      ]
+    }
+  },
   "uuid": "9b00c027-8f13-4f5a-a57e-d90478a1f817"
 }
