@@ -12,20 +12,8 @@
 	<key>patterns</key>
 	<array>
 		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.comment.toml</string>
-				</dict>
-			</dict>
-			<key>comment</key>
-			<string>Comments - whole line or partial</string>
-			<key>match</key>
-			<string>(#.*$)</string>
-			<key>name</key>
-			<string>comment.line.number-sign.toml</string>
+			<key>include</key>
+			<string>#comments</string>
 		</dict>
 		<dict>
 			<key>captures</key>
@@ -60,6 +48,28 @@
 	</array>
 	<key>repository</key>
 	<dict>
+		<key>comments</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.comment.toml</string>
+						</dict>
+					</dict>
+					<key>comment</key>
+					<string>Comments - whole line or partial</string>
+					<key>match</key>
+					<string>(#.*$)</string>
+					<key>name</key>
+					<string>comment.line.number-sign.toml</string>
+				</dict>
+			</array>
+		</dict>
 		<key>dataTypes</key>
 		<dict>
 			<key>patterns</key>
@@ -149,6 +159,10 @@
 					<string>meta.array.toml</string>
 					<key>patterns</key>
 					<array>
+						<dict>
+							<key>include</key>
+							<string>#comments</string>
+						</dict>
 						<dict>
 							<key>include</key>
 							<string>#dataTypes</string>
