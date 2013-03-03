@@ -13,9 +13,9 @@
     { "name": "meta.tag.section.toml",
       "match": "^\\s*(\\[)(.*?)(\\])\\s*",
       "captures": {
-        "1" : { "name": "punctuation.definition.section.toml"},
+        "1" : { "name": "punctuation.definition.section.begin.toml"},
         "2" : { "name": "entity.section.toml"},
-        "3" : { "name": "punctuation.definition.section.toml"}
+        "3" : { "name": "punctuation.definition.section.end.toml"}
       },
       "comment": "Key group"
     },
@@ -27,7 +27,13 @@
       "patterns": [
         { "name": "string.name.value.toml",
           "begin": "\"",
+          "beginCaptures": {
+            "0": { "name": "punctuation.definition.string.begin.toml" }
+          },
           "end": "\"",
+          "endCaptures": {
+            "0": { "name": "punctuation.definition.string.end.toml" }
+          },
           "comment": "String"
         },
         { "name": "constant.other.date.toml",

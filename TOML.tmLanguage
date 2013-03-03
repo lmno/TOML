@@ -33,7 +33,7 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.section.toml</string>
+					<string>punctuation.definition.section.begin.toml</string>
 				</dict>
 				<key>2</key>
 				<dict>
@@ -43,7 +43,7 @@
 				<key>3</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.section.toml</string>
+					<string>punctuation.definition.section.end.toml</string>
 				</dict>
 			</dict>
 			<key>comment</key>
@@ -67,10 +67,26 @@
 				<dict>
 					<key>begin</key>
 					<string>"</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.string.begin.toml</string>
+						</dict>
+					</dict>
 					<key>comment</key>
 					<string>String</string>
 					<key>end</key>
 					<string>"</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.string.end.toml</string>
+						</dict>
+					</dict>
 					<key>name</key>
 					<string>string.name.value.toml</string>
 				</dict>
