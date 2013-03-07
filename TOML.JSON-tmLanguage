@@ -20,9 +20,9 @@
     "comments": {
       "patterns": [
         { "name": "comment.line.number-sign.toml",
-          "match": "(#.*$)",
+          "match": "((#).*$)",
           "captures": {
-            "1" : { "name": "punctuation.definition.comment.toml"}
+            "2" : { "name": "punctuation.definition.comment.toml"}
           },
           "comment": "Comments - whole line or partial"
         }

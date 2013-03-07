@@ -55,7 +55,7 @@
 				<dict>
 					<key>captures</key>
 					<dict>
-						<key>1</key>
+						<key>2</key>
 						<dict>
 							<key>name</key>
 							<string>punctuation.definition.comment.toml</string>
@@ -64,7 +64,7 @@
 					<key>comment</key>
 					<string>Comments - whole line or partial</string>
 					<key>match</key>
-					<string>(#.*$)</string>
+					<string>((#).*$)</string>
 					<key>name</key>
 					<string>comment.line.number-sign.toml</string>
 				</dict>
