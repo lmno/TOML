@@ -88,7 +88,7 @@
 					<key>comment</key>
 					<string>String</string>
 					<key>end</key>
-					<string>"</string>
+					<string>(?&lt;!\\)"</string>
 					<key>endCaptures</key>
 					<dict>
 						<key>0</key>

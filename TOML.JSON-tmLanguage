@@ -35,7 +35,7 @@
           "beginCaptures": {
             "0": { "name": "punctuation.definition.string.begin.toml" }
           },
-          "end": "\"",
+          "end": "(?<!\\\\)\"",
           "endCaptures": {
             "0": { "name": "punctuation.definition.string.end.toml" }
           },
