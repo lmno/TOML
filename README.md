@@ -1,6 +1,6 @@
 # TOML
 
-Sublime Text 2 syntax highlight for [TOML](https://github.com/mojombo/toml) format.
+Sublime Text syntax highlight for [TOML](https://github.com/mojombo/toml) format. It is confirmed to work on both Sublime Text 2 and Sublime Text 3 beta.
 
 ## Installation
 The easiest way to install it is to use [Package Control](http://wbond.net/sublime_packages/package_control), but this package isn't available there yet. It is still pending approval. For now, it has to be installed manually as described below.
