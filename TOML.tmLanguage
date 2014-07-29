@@ -16,7 +16,9 @@
 			<string>#comments</string>
 		</dict>
 		<dict>
-			<key>captures</key>
+			<key>begin</key>
+			<string>^\s*(\[\[)(.*?)(\]\])\s*</string>
+			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
 				<dict>
@@ -36,13 +38,22 @@
 			</dict>
 			<key>comment</key>
 			<string>Key group</string>
-			<key>match</key>
-			<string>^\s*(\[\[)(.*?)(\]\])\s*</string>
+			<key>end</key>
+			<string>(?=^\s*\[?\[.*\]\]?)</string>
 			<key>name</key>
 			<string>meta.tag.sectionlist.toml</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#dataTypes</string>
+				</dict>
+			</array>
 		</dict>
 		<dict>
-			<key>captures</key>
+			<key>begin</key>
+			<string>^\s*(\[)(.*?)(\])\s*</string>
+			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
 				<dict>
@@ -62,14 +73,17 @@
 			</dict>
 			<key>comment</key>
 			<string>Key group</string>
-			<key>match</key>
-			<string>^\s*(\[)(.*?)(\])\s*</string>
+			<key>end</key>
+			<string>(?=^\s*\[?\[.*\]\]?)</string>
 			<key>name</key>
 			<string>meta.tag.section.toml</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#dataTypes</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#dataTypes</string>
+				</dict>
+			</array>
 		</dict>
 	</array>
 	<key>repository</key>
