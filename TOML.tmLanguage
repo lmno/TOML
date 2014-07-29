@@ -17,12 +17,12 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^\s*(\[\[\]\]|\[\[\..*\]\]|\[\[.*\.\]\]|\[\[.*[\[\]#].*\]\])</string>
+			<string>^\s*(\[\[\]\]|\[\[\..*\]\]|\[\[.*\.\]\]|\[\[.*\.\..*\]\]|\[\[.*[\[\]#].*\]\])</string>
 			<key>comment</key>
 			<string>section names must be non-empty and cannot contain the characters: []#
 </string>
 			<key>end</key>
-			<string>(?=^\n*\s*\[?\[.*\]\]?)</string>
+			<string>(?=[\n\s]*\[?\[.*\]\]?)</string>
 			<key>name</key>
 			<string>invalid.illegal.sectionlist.toml</string>
 		</dict>
@@ -50,7 +50,7 @@
 			<key>comment</key>
 			<string>Key group</string>
 			<key>end</key>
-			<string>(?=^\s*\[?\[.*\]\]?)</string>
+			<string>(?=[\n\s]*\[?\[.*\]\]?)</string>
 			<key>name</key>
 			<string>meta.tag.sectionlist.toml</string>
 			<key>patterns</key>
@@ -63,12 +63,12 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^\s*(\[\]|\[\..*\]|\[.*\.\]|\[.*[\[\]#].*\])</string>
+			<string>^\s*(\[\]|\[\..*\]|\[.*\.\]|\[.*\.\..*\]|\[.*[\[\]#].*\])</string>
 			<key>comment</key>
 			<string>section names must be non-empty and cannot contain the characters: []#
 </string>
 			<key>end</key>
-			<string>(?=^\n*\s*\[?\[.*\]\]?)</string>
+			<string>(?=[\n\s]*\[?\[.*\]\]?)</string>
 			<key>name</key>
 			<string>invalid.illegal.section.toml</string>
 		</dict>
@@ -96,7 +96,7 @@
 			<key>comment</key>
 			<string>Key group</string>
 			<key>end</key>
-			<string>(?=^\s*\[?\[.*\]\]?)</string>
+			<string>(?=[\n\s]*\[?\[.*\]\]?)</string>
 			<key>name</key>
 			<string>meta.tag.section.toml</string>
 			<key>patterns</key>

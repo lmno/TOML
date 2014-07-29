@@ -1,10 +1,17 @@
 {
+    "fileTypes": [
+        "toml", 
+        "tml"
+    ], 
+    "scopeName": "source.toml", 
+    "uuid": "9b00c027-8f13-4f5a-a57e-d90478a1f817", 
+    "name": "TOML", 
     "repository": {
         "comments": {
             "patterns": [
                 {
-                    "match": "((#).*$)", 
                     "name": "comment.line.number-sign.toml", 
+                    "match": "((#).*$)", 
                     "comment": "Comments - whole line or partial", 
                     "captures": {
                         "2": {
@@ -17,53 +24,54 @@
         "dataTypes": {
             "patterns": [
                 {
-                    "endCaptures": {
-                        "0": {
-                            "name": "punctuation.definition.string.end.toml"
-                        }
-                    }, 
-                    "begin": "\"", 
                     "beginCaptures": {
                         "0": {
                             "name": "punctuation.definition.string.begin.toml"
                         }
                     }, 
-                    "comment": "String", 
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.string.end.toml"
+                        }
+                    }, 
                     "end": "(?<!\\\\)\"", 
-                    "name": "string.name.value.toml"
+                    "name": "string.name.value.toml", 
+                    "comment": "String", 
+                    "begin": "\""
                 }, 
                 {
-                    "match": "(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]):(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])Z", 
                     "name": "constant.other.date.toml", 
+                    "match": "(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]):(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])Z", 
                     "comment": "Datetime - ISO8601 dates"
                 }, 
                 {
-                    "match": "(-?[0-9]+)\\.([0-9]+)", 
                     "name": "constant.numeric.float.toml", 
+                    "match": "(-?[0-9]+)\\.([0-9]+)", 
                     "comment": "Float"
                 }, 
                 {
-                    "match": "-?[0-9]+", 
                     "name": "constant.numeric.integer.toml", 
+                    "match": "-?[0-9]+", 
                     "comment": "Integer"
                 }, 
                 {
-                    "match": "(true|false)", 
                     "name": "constant.language.boolean.toml", 
+                    "match": "(true|false)", 
                     "comment": "Boolean"
                 }, 
                 {
-                    "endCaptures": {
-                        "0": {
-                            "name": "punctuation.definition.array.end.toml"
-                        }
-                    }, 
-                    "begin": "\\[", 
                     "beginCaptures": {
                         "0": {
                             "name": "punctuation.definition.array.begin.toml"
                         }
                     }, 
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.array.end.toml"
+                        }
+                    }, 
+                    "end": "\\]", 
+                    "name": "meta.array.toml", 
                     "comment": "Array", 
                     "patterns": [
                         {
@@ -73,78 +81,70 @@
                             "include": "#dataTypes"
                         }
                     ], 
-                    "end": "\\]", 
-                    "name": "meta.array.toml"
+                    "begin": "\\["
                 }
             ]
         }
     }, 
-    "scopeName": "source.toml", 
     "patterns": [
         {
             "include": "#comments"
         }, 
         {
-            "end": "(?=^\\n*\\s*\\[?\\[.*\\]\\]?)", 
+            "end": "(?=[\\n\\s]*\\[?\\[.*\\]\\]?)", 
             "name": "invalid.illegal.sectionlist.toml", 
-            "begin": "^\\s*(\\[\\[\\]\\]|\\[\\[\\..*\\]\\]|\\[\\[.*\\.\\]\\]|\\[\\[.*[\\[\\]#].*\\]\\])", 
-            "comment": "section names must be non-empty and cannot contain the characters: []#\n"
+            "comment": "section names must be non-empty and cannot contain the characters: []#\n", 
+            "begin": "^\\s*(\\[\\[\\]\\]|\\[\\[\\..*\\]\\]|\\[\\[.*\\.\\]\\]|\\[\\[.*\\.\\..*\\]\\]|\\[\\[.*[\\[\\]#].*\\]\\])"
         }, 
         {
-            "begin": "^\\s*(\\[\\[)(.+)(\\]\\])\\s*", 
             "beginCaptures": {
+                "1": {
+                    "name": "punctuation.definition.sectionlist.begin.toml"
+                }, 
                 "3": {
                     "name": "punctuation.definition.sectionlist.end.toml"
                 }, 
                 "2": {
                     "name": "entity.section.toml"
-                }, 
-                "1": {
-                    "name": "punctuation.definition.sectionlist.begin.toml"
                 }
             }, 
+            "end": "(?=[\\n\\s]*\\[?\\[.*\\]\\]?)", 
+            "name": "meta.tag.sectionlist.toml", 
             "comment": "Key group", 
             "patterns": [
                 {
                     "include": "#dataTypes"
                 }
             ], 
-            "end": "(?=^\\s*\\[?\\[.*\\]\\]?)", 
-            "name": "meta.tag.sectionlist.toml"
+            "begin": "^\\s*(\\[\\[)(.+)(\\]\\])\\s*"
         }, 
         {
-            "end": "(?=^\\n*\\s*\\[?\\[.*\\]\\]?)", 
+            "end": "(?=[\\n\\s]*\\[?\\[.*\\]\\]?)", 
             "name": "invalid.illegal.section.toml", 
-            "begin": "^\\s*(\\[\\]|\\[\\..*\\]|\\[.*\\.\\]|\\[.*[\\[\\]#].*\\])", 
-            "comment": "section names must be non-empty and cannot contain the characters: []#\n"
+            "comment": "section names must be non-empty and cannot contain the characters: []#\n", 
+            "begin": "^\\s*(\\[\\]|\\[\\..*\\]|\\[.*\\.\\]|\\[.*\\.\\..*\\]|\\[.*[\\[\\]#].*\\])"
         }, 
         {
-            "begin": "^\\s*(\\[)(.+)(\\])\\s*", 
             "beginCaptures": {
+                "1": {
+                    "name": "punctuation.definition.section.begin.toml"
+                }, 
                 "3": {
                     "name": "punctuation.definition.section.end.toml"
                 }, 
                 "2": {
                     "name": "entity.section.toml"
-                }, 
-                "1": {
-                    "name": "punctuation.definition.section.begin.toml"
                 }
             }, 
+            "end": "(?=[\\n\\s]*\\[?\\[.*\\]\\]?)", 
+            "name": "meta.tag.section.toml", 
             "comment": "Key group", 
             "patterns": [
                 {
                     "include": "#dataTypes"
                 }
             ], 
-            "end": "(?=^\\s*\\[?\\[.*\\]\\]?)", 
-            "name": "meta.tag.section.toml"
+            "begin": "^\\s*(\\[)(.+)(\\])\\s*"
         }
-    ], 
-    "fileTypes": [
-        "toml", 
-        "tml"
-    ], 
-    "name": "TOML", 
-    "uuid": "9b00c027-8f13-4f5a-a57e-d90478a1f817"
+    ]
 }
