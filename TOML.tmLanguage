@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>fileTypes</key>
@@ -14,6 +14,32 @@
 		<dict>
 			<key>include</key>
 			<string>#comments</string>
+		</dict>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.sectionlist.begin.toml</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>entity.section.toml</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.sectionlist.end.toml</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Key group</string>
+			<key>match</key>
+			<string>^\s*(\[\[)(.*?)(\]\])\s*</string>
+			<key>name</key>
+			<string>meta.tag.sectionlist.toml</string>
 		</dict>
 		<dict>
 			<key>captures</key>
@@ -130,7 +156,7 @@
 					<key>match</key>
 					<string>(true|false)</string>
 					<key>name</key>
-					<string>constant.language,boolean.toml</string>
+					<string>constant.language.boolean.toml</string>
 				</dict>
 				<dict>
 					<key>begin</key>
