@@ -17,14 +17,15 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^\s*(\[\[\]\]|\[\[\..*\]\]|\[\[.*\.\]\]|\[\[.*\.\..*\]\]|\[\[.*[\[\]#].*\]\])</string>
+			<string>^\s*(\[\[\]\]|\[\[\..*\]\]|\[\[.*\.\]\]|\[\[.*\.\..*\]\]|\[\[.*[\[\]#].*\]\]|\[\[.*\]\].+\n)</string>
 			<key>comment</key>
-			<string>section names must be non-empty and cannot contain the characters: []#
+			<string>Table arrays have the same error conditions given for standard tables.
+See below.
 </string>
 			<key>end</key>
-			<string>(?=[\n\s]*\[?\[.*\]\]?)</string>
+			<string>(?=^\s*\[?\[.*\]\]?)</string>
 			<key>name</key>
-			<string>invalid.illegal.sectionlist.toml</string>
+			<string>invalid.illegal.table-array.toml</string>
 		</dict>
 		<dict>
 			<key>begin</key>
@@ -34,43 +35,49 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.sectionlist.begin.toml</string>
+					<string>punctuation.definition.table-array.begin.toml</string>
 				</dict>
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>entity.section.toml</string>
+					<string>entity.table-array.toml</string>
 				</dict>
 				<key>3</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.sectionlist.end.toml</string>
+					<string>punctuation.definition.table-array.end.toml</string>
 				</dict>
 			</dict>
 			<key>comment</key>
-			<string>Key group</string>
+			<string>A named array of hash tables</string>
 			<key>end</key>
-			<string>(?=[\n\s]*\[?\[.*\]\]?)</string>
+			<string>(?=^\s*\[?\[.*\]\]?)</string>
 			<key>name</key>
-			<string>meta.tag.sectionlist.toml</string>
+			<string>meta.tag.table-array.toml</string>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#dataTypes</string>
+					<string>#comments</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#keys</string>
 				</dict>
 			</array>
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^\s*(\[\]|\[\..*\]|\[.*\.\]|\[.*\.\..*\]|\[.*[\[\]#].*\])</string>
+			<string>^\s*(\[\]|\[\..*\]|\[.*\.\]|\[.*\.\..*\]|\[.*[\[\]#].*\]|\[.*\].+\n)</string>
 			<key>comment</key>
-			<string>section names must be non-empty and cannot contain the characters: []#
+			<string>Each table name segment must be non-empty, must not contain the characters
+'[', ']' or '#' and is delimited by a '.'.  Tables "appear in square
+brackets *on a line by themselves*"
 </string>
 			<key>end</key>
-			<string>(?=[\n\s]*\[?\[.*\]\]?)</string>
+			<string>(?=^\s*\[?\[.*\]\]?)</string>
 			<key>name</key>
-			<string>invalid.illegal.section.toml</string>
+			<string>invalid.illegal.table.toml</string>
 		</dict>
 		<dict>
 			<key>begin</key>
@@ -80,30 +87,34 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.section.begin.toml</string>
+					<string>punctuation.definition.table.begin.toml</string>
 				</dict>
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>entity.section.toml</string>
+					<string>entity.table.toml</string>
 				</dict>
 				<key>3</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.section.end.toml</string>
+					<string>punctuation.definition.table.end.toml</string>
 				</dict>
 			</dict>
 			<key>comment</key>
-			<string>Key group</string>
+			<string>A named hash table</string>
 			<key>end</key>
-			<string>(?=[\n\s]*\[?\[.*\]\]?)</string>
+			<string>(?=^\s*\[?\[.*\]\]?)</string>
 			<key>name</key>
-			<string>meta.tag.section.toml</string>
+			<string>meta.tag.table.toml</string>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#dataTypes</string>
+					<string>#comments</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#keys</string>
 				</dict>
 			</array>
 		</dict>
@@ -117,7 +128,7 @@
 				<dict>
 					<key>captures</key>
 					<dict>
-						<key>2</key>
+						<key>1</key>
 						<dict>
 							<key>name</key>
 							<string>punctuation.definition.comment.toml</string>
@@ -136,6 +147,45 @@
 		<dict>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>begin</key>
+					<string>"""</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.string.begin.toml</string>
+						</dict>
+					</dict>
+					<key>comment</key>
+					<string>Multi-line String</string>
+					<key>end</key>
+					<string>(?&lt;!\\)"""</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.string.end.toml</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>string.quoted.double.toml</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#escapes</string>
+						</dict>
+						<dict>
+							<key>match</key>
+							<string>\\\n\s*</string>
+							<key>name</key>
+							<string>constant.character.escape.whitespace.toml</string>
+						</dict>
+					</array>
+				</dict>
 				<dict>
 					<key>begin</key>
 					<string>"</string>
@@ -160,7 +210,66 @@
 						</dict>
 					</dict>
 					<key>name</key>
-					<string>string.name.value.toml</string>
+					<string>string.quoted.double.toml</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#escapes</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>'''</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.string.begin.toml</string>
+						</dict>
+					</dict>
+					<key>comment</key>
+					<string>Multi-line Literal String</string>
+					<key>end</key>
+					<string>(?&lt;!\\)'''</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.string.end.toml</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>string.quoted.single.toml</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>'</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.string.begin.toml</string>
+						</dict>
+					</dict>
+					<key>comment</key>
+					<string>Literal String</string>
+					<key>end</key>
+					<string>(?&lt;!\\)'</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.string.end.toml</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>string.quoted.single.toml</string>
 				</dict>
 				<dict>
 					<key>comment</key>
@@ -219,6 +328,77 @@
 					</dict>
 					<key>name</key>
 					<string>meta.array.toml</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#comments</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#dataTypes</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<key>escapes</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\\[btnfr"/\\]</string>
+					<key>name</key>
+					<string>constant.character.escape.toml</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>constant.character.escape.unicode.16-bit-hex.toml</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>constant.character.escape.unicode.32-bit-hex.toml</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(\\U[0-9A-Fa-f]{8})|(\\u[0-9A-Fa-f]{4})</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\\.</string>
+					<key>name</key>
+					<string>invalid.illegal.character.escape.toml</string>
+				</dict>
+			</array>
+		</dict>
+		<key>keys</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>^\s*([^\[]+)\s*(\=)\s*</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.tag.toml</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.separator.key-value.toml</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>(?=(\s*[^\[]+\s*=\s*|^\s*\[?\[.*\]\]?))</string>
 					<key>patterns</key>
 					<array>
 						<dict>
