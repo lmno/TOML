@@ -1,10 +1,4 @@
 {
-    "fileTypes": [
-        "toml", 
-        "tml"
-    ], 
-    "name": "TOML", 
-    "uuid": "9b00c027-8f13-4f5a-a57e-d90478a1f817", 
     "repository": {
         "comments": {
             "patterns": [
@@ -23,8 +17,6 @@
         "dataTypes": {
             "patterns": [
                 {
-                    "end": "(?<!\\\\)\"", 
-                    "name": "string.name.value.toml", 
                     "endCaptures": {
                         "0": {
                             "name": "punctuation.definition.string.end.toml"
@@ -36,7 +28,9 @@
                             "name": "punctuation.definition.string.begin.toml"
                         }
                     }, 
-                    "comment": "String"
+                    "comment": "String", 
+                    "end": "(?<!\\\\)\"", 
+                    "name": "string.name.value.toml"
                 }, 
                 {
                     "match": "(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]):(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])Z", 
@@ -59,8 +53,6 @@
                     "comment": "Boolean"
                 }, 
                 {
-                    "end": "\\]", 
-                    "name": "meta.array.toml", 
                     "endCaptures": {
                         "0": {
                             "name": "punctuation.definition.array.end.toml"
@@ -80,7 +72,9 @@
                         {
                             "include": "#dataTypes"
                         }
-                    ]
+                    ], 
+                    "end": "\\]", 
+                    "name": "meta.array.toml"
                 }
             ]
         }
@@ -91,9 +85,13 @@
             "include": "#comments"
         }, 
         {
-            "end": "(?=^\\s*\\[?\\[.*\\]\\]?)", 
-            "name": "meta.tag.sectionlist.toml", 
-            "begin": "^\\s*(\\[\\[)(.*?)(\\]\\])\\s*", 
+            "end": "(?=^\\n*\\s*\\[?\\[.*\\]\\]?)", 
+            "name": "invalid.illegal.sectionlist.toml", 
+            "begin": "^\\s*(\\[\\[\\]\\]|\\[\\[\\..*\\]\\]|\\[\\[.*\\.\\]\\]|\\[\\[.*[\\[\\]#].*\\]\\])", 
+            "comment": "section names must be non-empty and cannot contain the characters: []#\n"
+        }, 
+        {
+            "begin": "^\\s*(\\[\\[)(.+)(\\]\\])\\s*", 
             "beginCaptures": {
                 "3": {
                     "name": "punctuation.definition.sectionlist.end.toml"
@@ -110,12 +108,18 @@
                 {
                     "include": "#dataTypes"
                 }
-            ]
+            ], 
+            "end": "(?=^\\s*\\[?\\[.*\\]\\]?)", 
+            "name": "meta.tag.sectionlist.toml"
         }, 
         {
-            "end": "(?=^\\s*\\[?\\[.*\\]\\]?)", 
-            "name": "meta.tag.section.toml", 
-            "begin": "^\\s*(\\[)(.*?)(\\])\\s*", 
+            "end": "(?=^\\n*\\s*\\[?\\[.*\\]\\]?)", 
+            "name": "invalid.illegal.section.toml", 
+            "begin": "^\\s*(\\[\\]|\\[\\..*\\]|\\[.*\\.\\]|\\[.*[\\[\\]#].*\\])", 
+            "comment": "section names must be non-empty and cannot contain the characters: []#\n"
+        }, 
+        {
+            "begin": "^\\s*(\\[)(.+)(\\])\\s*", 
             "beginCaptures": {
                 "3": {
                     "name": "punctuation.definition.section.end.toml"
@@ -132,7 +136,15 @@
                 {
                     "include": "#dataTypes"
                 }
-            ]
+            ], 
+            "end": "(?=^\\s*\\[?\\[.*\\]\\]?)", 
+            "name": "meta.tag.section.toml"
         }
-    ]
+    ], 
+    "fileTypes": [
+        "toml", 
+        "tml"
+    ], 
+    "name": "TOML", 
+    "uuid": "9b00c027-8f13-4f5a-a57e-d90478a1f817"
 }

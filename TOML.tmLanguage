@@ -17,7 +17,18 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^\s*(\[\[)(.*?)(\]\])\s*</string>
+			<string>^\s*(\[\[\]\]|\[\[\..*\]\]|\[\[.*\.\]\]|\[\[.*[\[\]#].*\]\])</string>
+			<key>comment</key>
+			<string>section names must be non-empty and cannot contain the characters: []#
+</string>
+			<key>end</key>
+			<string>(?=^\n*\s*\[?\[.*\]\]?)</string>
+			<key>name</key>
+			<string>invalid.illegal.sectionlist.toml</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^\s*(\[\[)(.+)(\]\])\s*</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -52,7 +63,18 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^\s*(\[)(.*?)(\])\s*</string>
+			<string>^\s*(\[\]|\[\..*\]|\[.*\.\]|\[.*[\[\]#].*\])</string>
+			<key>comment</key>
+			<string>section names must be non-empty and cannot contain the characters: []#
+</string>
+			<key>end</key>
+			<string>(?=^\n*\s*\[?\[.*\]\]?)</string>
+			<key>name</key>
+			<string>invalid.illegal.section.toml</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^\s*(\[)(.+)(\])\s*</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
